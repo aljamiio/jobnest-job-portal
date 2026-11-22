@@ -7,11 +7,16 @@ import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import NotFound from './pages/NotFound'
 
+import MainLayout from './layouts/MainLayout'
+
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/jobs" element={<Jobs />} />
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/jobs" element={<Jobs />} />
+      </Route>
+
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
