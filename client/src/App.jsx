@@ -1,11 +1,22 @@
 
+import { Routes, Route } from 'react-router-dom'
+
+import Home from './pages/Home'
+import Jobs from './pages/jobs/Jobs'
+import Login from './pages/auth/Login'
+import Register from './pages/auth/Register'
+import NotFound from './pages/NotFound'
+
 function App() {
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-      <h1 className="text-5xl font-bold text-white">
-        Welcome to JobNest
-      </h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/jobs" element={<Jobs />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   )
 }
 
