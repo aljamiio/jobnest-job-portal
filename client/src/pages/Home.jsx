@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import CTASection from '../components/home/CTASection'
 
 function Home() {
   const handleSearch = (e) => {
@@ -739,8 +740,8 @@ function Home() {
         </div>
       </section>
 
-
-
+            {/* Homepage CTA Section */}
+      <CTASection />
 
 
     </main>
