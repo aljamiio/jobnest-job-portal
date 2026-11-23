@@ -1,12 +1,23 @@
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useTheme } from '../../context/ThemeContext'
+import { useAuth } from '../../context/AuthContext'
 
 function Login() {
   const { theme, toggleTheme } = useTheme()
+  const { login } = useAuth()
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    const formData = new FormData(e.currentTarget)
+
+    const email = formData.get('email')
+
+    login({ email })
+
+    navigate('/')
   }
 
   return (
