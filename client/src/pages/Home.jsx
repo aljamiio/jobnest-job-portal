@@ -54,6 +54,68 @@ function Home() {
   ]
 
 
+
+  const jobCategories = [
+    {
+      id: 1,
+      name: 'Software Development',
+      icon: '💻',
+      jobs: '120+ Jobs',
+      color: 'bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400',
+    },
+    {
+      id: 2,
+      name: 'Design & Creative',
+      icon: '🎨',
+      jobs: '85+ Jobs',
+      color: 'bg-purple-100 text-purple-600 dark:bg-purple-500/20 dark:text-purple-400',
+    },
+    {
+      id: 3,
+      name: 'Marketing',
+      icon: '📢',
+      jobs: '64+ Jobs',
+      color: 'bg-orange-100 text-orange-600 dark:bg-orange-500/20 dark:text-orange-400',
+    },
+    {
+      id: 4,
+      name: 'Finance & Accounting',
+      icon: '💰',
+      jobs: '52+ Jobs',
+      color: 'bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400',
+    },
+    {
+      id: 5,
+      name: 'Human Resources',
+      icon: '👥',
+      jobs: '38+ Jobs',
+      color: 'bg-pink-100 text-pink-600 dark:bg-pink-500/20 dark:text-pink-400',
+    },
+    {
+      id: 6,
+      name: 'Customer Support',
+      icon: '🎧',
+      jobs: '45+ Jobs',
+      color: 'bg-cyan-100 text-cyan-600 dark:bg-cyan-500/20 dark:text-cyan-400',
+    },
+    {
+      id: 7,
+      name: 'Sales & Business',
+      icon: '📈',
+      jobs: '72+ Jobs',
+      color: 'bg-indigo-100 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400',
+    },
+    {
+      id: 8,
+      name: 'Data & Analytics',
+      icon: '📊',
+      jobs: '41+ Jobs',
+      color: 'bg-amber-100 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400',
+    },
+  ]
+
+
+
   return (
     <main className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300">
 
@@ -369,6 +431,88 @@ function Home() {
 
         </div>
       </section>
+
+
+
+      {/* Job Categories Section */}
+      <section className="py-20 bg-white dark:bg-slate-950 transition-colors duration-300">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Section Heading */}
+          <div className="text-center max-w-2xl mx-auto mb-12">
+
+            <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+              EXPLORE CATEGORIES
+            </span>
+
+            <h2 className="text-3xl sm:text-4xl font-bold mt-3">
+              Browse by Category
+            </h2>
+
+            <p className="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+              Explore job opportunities across different industries and
+              discover the career path that matches your skills.
+            </p>
+
+          </div>
+
+          {/* Category Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            {jobCategories.map((category) => (
+              <Link
+                to="/jobs"
+                key={category.id}
+                className="group bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-blue-300 dark:hover:border-blue-500/50 hover:shadow-xl hover:shadow-slate-200/40 dark:hover:shadow-black/20 hover:-translate-y-1 transition-all duration-300"
+              >
+
+                {/* Category Icon */}
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl ${category.color}`}>
+                  {category.icon}
+                </div>
+
+                {/* Category Details */}
+                <div className="mt-6">
+
+                  <h3 className="text-lg font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {category.name}
+                  </h3>
+
+                  <div className="flex items-center justify-between mt-4">
+
+                    <span className="text-sm text-slate-500 dark:text-slate-400">
+                      {category.jobs}
+                    </span>
+
+                    <span className="text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-transform">
+                      →
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </Link>
+            ))}
+
+          </div>
+
+          {/* Browse All Categories */}
+          <div className="text-center mt-12">
+
+            <Link
+              to="/jobs"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-semibold hover:bg-blue-600 hover:text-white hover:border-blue-600 dark:hover:bg-blue-500 dark:hover:border-blue-500 transition-colors duration-200"
+            >
+              Explore All Jobs <span>→</span>
+            </Link>
+
+          </div>
+
+        </div>
+      </section>
+
 
 
     </main>
