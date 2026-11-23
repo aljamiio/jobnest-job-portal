@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import Home from './pages/Home'
 import Jobs from './pages/jobs/Jobs'
+import JobDetails from './pages/jobs/JobDetails'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import NotFound from './pages/NotFound'
@@ -15,6 +16,7 @@ function App() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<Jobs />} />
+        <Route path="/jobs/:id" element={<JobDetails />} />
       </Route>
 
       <Route path="/login" element={<Login />} />

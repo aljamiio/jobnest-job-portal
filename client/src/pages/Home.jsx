@@ -1,58 +1,12 @@
+import jobs from '../data/jobs'
 import { Link } from 'react-router-dom'
 import CTASection from '../components/home/CTASection'
+
 
 function Home() {
   const handleSearch = (e) => {
     e.preventDefault()
   }
-
-
-  const featuredJobs = [
-    {
-      id: 1,
-      title: 'Frontend Developer',
-      company: 'TechNova',
-      initial: 'T',
-      location: 'Dhaka, Bangladesh',
-      salary: '৳40k - ৳60k',
-      type: 'Full Time',
-      mode: 'Hybrid',
-      color: 'bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400',
-    },
-    {
-      id: 2,
-      title: 'UI/UX Designer',
-      company: 'PixelCraft',
-      initial: 'P',
-      location: 'Remote',
-      salary: '৳30k - ৳50k',
-      type: 'Full Time',
-      mode: 'Remote',
-      color: 'bg-purple-100 text-purple-600 dark:bg-purple-500/20 dark:text-purple-400',
-    },
-    {
-      id: 3,
-      title: 'Backend Developer',
-      company: 'CloudTech',
-      initial: 'C',
-      location: 'Dhaka, Bangladesh',
-      salary: '৳50k - ৳75k',
-      type: 'Full Time',
-      mode: 'On-site',
-      color: 'bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400',
-    },
-    {
-      id: 4,
-      title: 'Digital Marketing Intern',
-      company: 'GrowthLab',
-      initial: 'G',
-      location: 'Chattogram, Bangladesh',
-      salary: '৳12k - ৳18k',
-      type: 'Internship',
-      mode: 'Hybrid',
-      color: 'bg-orange-100 text-orange-600 dark:bg-orange-500/20 dark:text-orange-400',
-    },
-  ]
 
 
 
@@ -360,7 +314,7 @@ function Home() {
           {/* Job Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-            {featuredJobs.map((job) => (
+            {jobs.slice(0, 4).map((job) => (
               <div
                 key={job.id}
                 className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-black/20 transition-all duration-300"
@@ -740,7 +694,7 @@ function Home() {
         </div>
       </section>
 
-            {/* Homepage CTA Section */}
+      {/* Homepage CTA Section */}
       <CTASection />
 
 
