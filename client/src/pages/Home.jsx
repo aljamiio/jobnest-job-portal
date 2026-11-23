@@ -373,7 +373,7 @@ function Home() {
 
                 {/* Apply Button */}
                 <Link
-                  to="/jobs"
+                  to={`/jobs/${job.id}`}
                   className="block text-center mt-6 w-full py-3 rounded-xl border border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 font-semibold hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 dark:hover:text-white transition-colors duration-200"
                 >
                   View Details
