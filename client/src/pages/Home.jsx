@@ -514,6 +514,117 @@ function Home() {
       </section>
 
 
+      {/* How JobNest Works Section */}
+      <section className="py-20 bg-slate-50 dark:bg-slate-900/50 transition-colors duration-300">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Section Heading */}
+          <div className="text-center max-w-2xl mx-auto mb-16">
+
+            <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+              SIMPLE PROCESS
+            </span>
+
+            <h2 className="text-3xl sm:text-4xl font-bold mt-3">
+              How JobNest Works
+            </h2>
+
+            <p className="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+              Finding your dream job doesn't have to be complicated.
+              Follow these three simple steps to get started.
+            </p>
+
+          </div>
+
+          {/* Process Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            {/* Step 1 */}
+            <div className="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 text-center hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-black/20 transition-all duration-300">
+
+              <div className="absolute top-5 right-6 text-5xl font-extrabold text-slate-100 dark:text-slate-800">
+                01
+              </div>
+
+              <div className="relative w-20 h-20 mx-auto rounded-2xl bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center text-4xl">
+                👤
+              </div>
+
+              <h3 className="text-xl font-bold mt-7">
+                Create Your Account
+              </h3>
+
+              <p className="mt-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                Sign up on JobNest and create your professional profile
+                to showcase your skills and experience.
+              </p>
+
+            </div>
+
+            {/* Step 2 */}
+            <div className="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 text-center hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-black/20 transition-all duration-300">
+
+              <div className="absolute top-5 right-6 text-5xl font-extrabold text-slate-100 dark:text-slate-800">
+                02
+              </div>
+
+              <div className="relative w-20 h-20 mx-auto rounded-2xl bg-purple-100 dark:bg-purple-500/20 flex items-center justify-center text-4xl">
+                🔍
+              </div>
+
+              <h3 className="text-xl font-bold mt-7">
+                Explore Opportunities
+              </h3>
+
+              <p className="mt-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                Browse available jobs, discover top companies, and
+                find opportunities that match your interests.
+              </p>
+
+            </div>
+
+            {/* Step 3 */}
+            <div className="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 text-center hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-black/20 transition-all duration-300">
+
+              <div className="absolute top-5 right-6 text-5xl font-extrabold text-slate-100 dark:text-slate-800">
+                03
+              </div>
+
+              <div className="relative w-20 h-20 mx-auto rounded-2xl bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-4xl">
+                🚀
+              </div>
+
+              <h3 className="text-xl font-bold mt-7">
+                Apply & Get Hired
+              </h3>
+
+              <p className="mt-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                Apply for your favorite jobs and take the next step
+                toward building a successful career.
+              </p>
+
+            </div>
+
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="text-center mt-12">
+
+            <Link
+              to="/jobs"
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3.5 rounded-xl transition-colors duration-200"
+            >
+              Start Exploring Jobs <span>→</span>
+            </Link>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
 
     </main>
   )
