@@ -625,6 +625,123 @@ function Home() {
 
 
 
+      {/* Platform Statistics Section */}
+      <section className="py-16 sm:py-20 bg-slate-50 dark:bg-slate-900/60 transition-colors duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div className="text-center mb-12">
+            <p className="text-sm font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3">
+              JobNest in Numbers
+            </p>
+
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
+              Growing Together, Building Careers
+            </h2>
+
+            <p className="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+              We are connecting talented people with opportunities and
+              helping businesses find the right talent.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { number: '1,200+', label: 'Available Jobs', icon: '💼' },
+              { number: '350+', label: 'Registered Companies', icon: '🏢' },
+              { number: '5,000+', label: 'Active Job Seekers', icon: '👥' },
+              { number: '800+', label: 'Successful Placements', icon: '🎯' },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="bg-white dark:bg-slate-800 rounded-2xl p-6 text-center border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg transition-all duration-300"
+              >
+                <div className="text-3xl mb-3">{stat.icon}</div>
+
+                <h3 className="text-3xl sm:text-4xl font-bold text-blue-600 dark:text-blue-400">
+                  {stat.number}
+                </h3>
+
+                <p className="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose JobNest Section */}
+      <section className="py-16 sm:py-20 bg-white dark:bg-slate-950 transition-colors duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div className="text-center mb-12">
+            <p className="text-sm font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3">
+              Why JobNest
+            </p>
+
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
+              Why Choose JobNest?
+            </h2>
+
+            <p className="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+              Everything you need to take the next step in your career,
+              all in one place.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            {[
+              {
+                icon: '🔍',
+                title: 'Easy Job Search',
+                description:
+                  'Find relevant opportunities easily with a simple and user-friendly job search experience.',
+              },
+              {
+                icon: '🤝',
+                title: 'Trusted Companies',
+                description:
+                  'Discover career opportunities from companies looking for talented professionals.',
+              },
+              {
+                icon: '🚀',
+                title: 'Career Growth',
+                description:
+                  'Explore opportunities that help you develop your skills and build your career.',
+              },
+              {
+                icon: '⚡',
+                title: 'Simple Application',
+                description:
+                  'Apply for your desired positions through a straightforward application process.',
+              },
+            ].map((feature) => (
+              <div
+                key={feature.title}
+                className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="w-14 h-14 rounded-xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-3xl mb-5">
+                  {feature.icon}
+                </div>
+
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">
+                  {feature.title}
+                </h3>
+
+                <p className="text-sm leading-6 text-slate-600 dark:text-slate-400">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+
+          </div>
+        </div>
+      </section>
+
+
+
+
 
     </main>
   )
