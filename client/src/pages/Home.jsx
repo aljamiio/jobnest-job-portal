@@ -1,8 +1,58 @@
+import { Link } from 'react-router-dom'
 
 function Home() {
   const handleSearch = (e) => {
     e.preventDefault()
   }
+
+
+  const featuredJobs = [
+    {
+      id: 1,
+      title: 'Frontend Developer',
+      company: 'TechNova',
+      initial: 'T',
+      location: 'Dhaka, Bangladesh',
+      salary: '৳40k - ৳60k',
+      type: 'Full Time',
+      mode: 'Hybrid',
+      color: 'bg-blue-100 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400',
+    },
+    {
+      id: 2,
+      title: 'UI/UX Designer',
+      company: 'PixelCraft',
+      initial: 'P',
+      location: 'Remote',
+      salary: '৳30k - ৳50k',
+      type: 'Full Time',
+      mode: 'Remote',
+      color: 'bg-purple-100 text-purple-600 dark:bg-purple-500/20 dark:text-purple-400',
+    },
+    {
+      id: 3,
+      title: 'Backend Developer',
+      company: 'CloudTech',
+      initial: 'C',
+      location: 'Dhaka, Bangladesh',
+      salary: '৳50k - ৳75k',
+      type: 'Full Time',
+      mode: 'On-site',
+      color: 'bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400',
+    },
+    {
+      id: 4,
+      title: 'Digital Marketing Intern',
+      company: 'GrowthLab',
+      initial: 'G',
+      location: 'Chattogram, Bangladesh',
+      salary: '৳12k - ৳18k',
+      type: 'Internship',
+      mode: 'Hybrid',
+      color: 'bg-orange-100 text-orange-600 dark:bg-orange-500/20 dark:text-orange-400',
+    },
+  ]
+
 
   return (
     <main className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300">
@@ -210,6 +260,116 @@ function Home() {
           </div>
         </div>
       </section>
+
+
+      {/* Featured Jobs Section */}
+      <section className="py-20 bg-slate-50 dark:bg-slate-900/50 transition-colors duration-300">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Section Heading */}
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 mb-10">
+
+            <div>
+              <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+                OPPORTUNITIES FOR YOU
+              </span>
+
+              <h2 className="text-3xl sm:text-4xl font-bold mt-3">
+                Featured Jobs
+              </h2>
+
+              <p className="mt-3 text-slate-600 dark:text-slate-400 max-w-xl">
+                Explore handpicked opportunities from companies looking for
+                talented people like you.
+              </p>
+            </div>
+
+            <Link
+              to="/jobs"
+              className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:gap-3 transition-all"
+            >
+              View All Jobs <span>→</span>
+            </Link>
+
+          </div>
+
+          {/* Job Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            {featuredJobs.map((job) => (
+              <div
+                key={job.id}
+                className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-black/20 transition-all duration-300"
+              >
+
+                {/* Company Info */}
+                <div className="flex items-center justify-between">
+
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold ${job.color}`}>
+                    {job.initial}
+                  </div>
+
+                  <span className="text-xs font-medium px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                    Featured
+                  </span>
+
+                </div>
+
+                {/* Job Details */}
+                <div className="mt-6">
+                  <h3 className="text-lg font-bold leading-snug">
+                    {job.title}
+                  </h3>
+
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                    {job.company}
+                  </p>
+
+                  <div className="mt-5 space-y-3 text-sm text-slate-600 dark:text-slate-400">
+
+                    <div className="flex items-center gap-2">
+                      <span>📍</span>
+                      <span>{job.location}</span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <span>💰</span>
+                      <span>{job.salary}</span>
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* Job Tags */}
+                <div className="flex flex-wrap gap-2 mt-6">
+
+                  <span className="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                    {job.type}
+                  </span>
+
+                  <span className="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                    {job.mode}
+                  </span>
+
+                </div>
+
+                {/* Apply Button */}
+                <Link
+                  to="/jobs"
+                  className="block text-center mt-6 w-full py-3 rounded-xl border border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 font-semibold hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 dark:hover:text-white transition-colors duration-200"
+                >
+                  View Details
+                </Link>
+
+              </div>
+            ))}
+
+          </div>
+
+        </div>
+      </section>
+
 
     </main>
   )
