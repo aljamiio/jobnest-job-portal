@@ -7,6 +7,69 @@ function Jobs() {
   const [category, setCategory] = useState('')
   const [jobType, setJobType] = useState('')
 
+  const jobs = [
+    {
+      id: 1,
+      title: 'Frontend Developer',
+      company: 'TechNova',
+      location: 'Dhaka, Bangladesh',
+      salary: '৳40,000 - ৳60,000',
+      type: 'Full-time',
+      category: 'Development',
+      posted: '2 days ago',
+    },
+    {
+      id: 2,
+      title: 'UI/UX Designer',
+      company: 'PixelCraft',
+      location: 'Remote',
+      salary: '৳30,000 - ৳45,000',
+      type: 'Full-time',
+      category: 'Design',
+      posted: '3 days ago',
+    },
+    {
+      id: 3,
+      title: 'React Developer Intern',
+      company: 'CodeBridge',
+      location: 'Dhaka, Bangladesh',
+      salary: '৳15,000 - ৳20,000',
+      type: 'Internship',
+      category: 'Development',
+      posted: '1 day ago',
+    },
+    {
+      id: 4,
+      title: 'Digital Marketing Executive',
+      company: 'GrowthHub',
+      location: 'Chattogram, Bangladesh',
+      salary: '৳25,000 - ৳35,000',
+      type: 'Full-time',
+      category: 'Marketing',
+      posted: '5 days ago',
+    },
+    {
+      id: 5,
+      title: 'Customer Support Executive',
+      company: 'SupportPro',
+      location: 'Remote',
+      salary: '৳20,000 - ৳30,000',
+      type: 'Part-time',
+      category: 'Customer Support',
+      posted: '4 days ago',
+    },
+    {
+      id: 6,
+      title: 'Backend Developer',
+      company: 'TechNova',
+      location: 'Dhaka, Bangladesh',
+      salary: '৳50,000 - ৳70,000',
+      type: 'Full-time',
+      category: 'Development',
+      posted: '6 days ago',
+    },
+  ]
+
   const handleSearch = (e) => {
     e.preventDefault()
   }
@@ -69,7 +132,6 @@ function Jobs() {
               />
             </div>
 
-            {/* Job Category */}
             <div>
               <label className="block mb-2 text-sm font-semibold">
                 Job Category
@@ -90,7 +152,6 @@ function Jobs() {
               </select>
             </div>
 
-            {/* Job Type */}
             <div>
               <label className="block mb-2 text-sm font-semibold">
                 Job Type
@@ -132,6 +193,71 @@ function Jobs() {
           </div>
 
         </form>
+
+        {/* Job Listings */}
+        <div className="mt-12">
+
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold">
+              Latest Jobs
+            </h2>
+
+            <span className="text-sm text-gray-500 dark:text-gray-400">
+              {jobs.length} Jobs Available
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {jobs.map((job) => (
+              <div
+                key={job.id}
+                className="p-6 rounded-2xl border border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:shadow-lg transition duration-300"
+              >
+
+                <div className="flex justify-between items-start gap-4">
+
+                  <div>
+                    <h3 className="text-xl font-bold">
+                      {job.title}
+                    </h3>
+
+                    <p className="mt-2 text-blue-600 dark:text-blue-400 font-medium">
+                      {job.company}
+                    </p>
+                  </div>
+
+                  <span className="text-xs px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">
+                    {job.type}
+                  </span>
+
+                </div>
+
+                <div className="mt-5 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+
+                  <p>📍 {job.location}</p>
+
+                  <p>💰 {job.salary}</p>
+
+                  <p>📂 {job.category}</p>
+
+                  <p>🕒 Posted {job.posted}</p>
+
+                </div>
+
+                <button
+                  type="button"
+                  className="mt-6 w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition"
+                >
+                  View Details
+                </button>
+
+              </div>
+            ))}
+
+          </div>
+
+        </div>
 
       </div>
 
