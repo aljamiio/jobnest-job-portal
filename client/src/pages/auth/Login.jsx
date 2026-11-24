@@ -1,4 +1,5 @@
 
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTheme } from '../../context/ThemeContext'
 import { useAuth } from '../../context/AuthContext'
@@ -8,16 +9,52 @@ function Login() {
   const { login } = useAuth()
   const navigate = useNavigate()
 
+  const [errors, setErrors] = useState({})
+
+  const validateForm = (email, password) => {
+    const newErrors = {}
+
+    if (!email.trim()) {
+      newErrors.email = 'Email address is required.'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      newErrors.email = 'Please enter a valid email address.'
+    }
+
+    if (!password) {
+      newErrors.password = 'Password is required.'
+    } else if (password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters.'
+    }
+
+    return newErrors
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
     const formData = new FormData(e.currentTarget)
 
-    const email = formData.get('email')
+    const email = formData.get('email').trim()
+    const password = formData.get('password')
+
+    const validationErrors = validateForm(email, password)
+
+    setErrors(validationErrors)
+
+    if (Object.keys(validationErrors).length > 0) {
+      return
+    }
 
     login({ email })
 
     navigate('/')
+  }
+
+  const handleInputChange = (field) => {
+    setErrors((prev) => ({
+      ...prev,
+      [field]: ''
+    }))
   }
 
   return (
@@ -26,7 +63,6 @@ function Login() {
       {/* Header */}
       <header className="w-full max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between shrink-0">
 
-        {/* Brand Logo */}
         <Link to="/" className="flex items-center shrink-0">
           <img
             src={
@@ -39,7 +75,6 @@ function Login() {
           />
         </Link>
 
-        {/* Theme Toggle */}
         <button
           onClick={toggleTheme}
           type="button"
@@ -60,7 +95,6 @@ function Login() {
           {/* Left Branding Panel */}
           <section className="relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-950 text-white p-8 sm:p-12 lg:p-14 flex flex-col justify-between">
 
-            {/* Decorative Shapes */}
             <div className="absolute -top-32 -right-24 w-96 h-96 rounded-full border-[50px] border-white/5" />
 
             <div className="absolute bottom-20 -left-32 w-80 h-80 rounded-full bg-blue-400/10 blur-3xl" />
@@ -126,7 +160,6 @@ function Login() {
 
             <div className="w-full max-w-md">
 
-              {/* Heading */}
               <div className="mb-8">
 
                 <p className="text-blue-600 dark:text-blue-400 text-sm font-bold uppercase tracking-widest">
@@ -144,7 +177,7 @@ function Login() {
               </div>
 
               {/* Login Form */}
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} noValidate className="space-y-5">
 
                 {/* Email */}
                 <div>
@@ -161,10 +194,22 @@ function Login() {
                     name="email"
                     type="email"
                     autoComplete="email"
-                    required
                     placeholder="name@example.com"
-                    className="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    onChange={() => handleInputChange('email')}
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={errors.email ? 'email-error' : undefined}
+                    className={`w-full px-4 py-3.5 rounded-xl border ${
+                      errors.email
+                        ? 'border-red-500 focus:ring-red-500'
+                        : 'border-slate-200 dark:border-slate-700 focus:ring-blue-500'
+                    } bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:border-transparent transition`}
                   />
+
+                  {errors.email && (
+                    <p id="email-error" role="alert" className="text-red-500 text-sm mt-2">
+                      {errors.email}
+                    </p>
+                  )}
 
                 </div>
 
@@ -194,10 +239,22 @@ function Login() {
                     name="password"
                     type="password"
                     autoComplete="current-password"
-                    required
                     placeholder="Enter your password"
-                    className="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    onChange={() => handleInputChange('password')}
+                    aria-invalid={Boolean(errors.password)}
+                    aria-describedby={errors.password ? 'password-error' : undefined}
+                    className={`w-full px-4 py-3.5 rounded-xl border ${
+                      errors.password
+                        ? 'border-red-500 focus:ring-red-500'
+                        : 'border-slate-200 dark:border-slate-700 focus:ring-blue-500'
+                    } bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:border-transparent transition`}
                   />
+
+                  {errors.password && (
+                    <p id="password-error" role="alert" className="text-red-500 text-sm mt-2">
+                      {errors.password}
+                    </p>
+                  )}
 
                 </div>
 
