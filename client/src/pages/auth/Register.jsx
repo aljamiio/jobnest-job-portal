@@ -1,5 +1,6 @@
 
 import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import { useTheme } from '../../context/ThemeContext'
 import { useAuth } from '../../context/AuthContext'
 
@@ -8,18 +9,52 @@ function Register() {
   const { register } = useAuth()
   const navigate = useNavigate()
 
+  const [errors, setErrors] = useState({})
+  const [formError, setFormError] = useState('')
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
     const formData = new FormData(e.currentTarget)
 
-    const name = formData.get('name')
-    const email = formData.get('email')
+    const name = formData.get('name').trim()
+    const email = formData.get('email').trim()
     const password = formData.get('password')
     const confirmPassword = formData.get('confirmPassword')
+    const terms = formData.get('terms')
 
-    if (password !== confirmPassword) {
-      alert('Passwords do not match!')
+    const newErrors = {}
+
+    if (!name) {
+      newErrors.name = 'Full name is required.'
+    } else if (name.length < 2) {
+      newErrors.name = 'Name must contain at least 2 characters.'
+    }
+
+    if (!email) {
+      newErrors.email = 'Email address is required.'
+    }
+
+    if (!password) {
+      newErrors.password = 'Password is required.'
+    } else if (password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters.'
+    }
+
+    if (!confirmPassword) {
+      newErrors.confirmPassword = 'Please confirm your password.'
+    } else if (password !== confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match.'
+    }
+
+    if (!terms) {
+      newErrors.terms = 'You must accept the terms and conditions.'
+    }
+
+    setErrors(newErrors)
+    setFormError('')
+
+    if (Object.keys(newErrors).length > 0) {
       return
     }
 
@@ -27,6 +62,13 @@ function Register() {
 
     navigate('/')
   }
+
+  const inputClass = (field) =>
+    `w-full px-4 py-3 rounded-xl border ${
+      errors[field]
+        ? 'border-red-500 focus:ring-red-500'
+        : 'border-slate-200 dark:border-slate-700 focus:ring-blue-500'
+    } bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:border-transparent transition`
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
@@ -148,8 +190,15 @@ function Register() {
 
               </div>
 
+              {/* General Error */}
+              {formError && (
+                <p role="alert" className="mb-4 text-sm text-red-600 dark:text-red-400">
+                  {formError}
+                </p>
+              )}
+
               {/* Register Form */}
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} noValidate className="space-y-4">
 
                 {/* Full Name */}
                 <div>
@@ -165,10 +214,17 @@ function Register() {
                     name="name"
                     type="text"
                     autoComplete="name"
-                    required
                     placeholder="Enter your full name"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    className={inputClass('name')}
+                    aria-invalid={Boolean(errors.name)}
+                    aria-describedby={errors.name ? 'name-error' : undefined}
                   />
+
+                  {errors.name && (
+                    <p id="name-error" className="mt-1 text-sm text-red-600 dark:text-red-400">
+                      {errors.name}
+                    </p>
+                  )}
                 </div>
 
                 {/* Email */}
@@ -185,10 +241,17 @@ function Register() {
                     name="email"
                     type="email"
                     autoComplete="email"
-                    required
                     placeholder="name@example.com"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    className={inputClass('email')}
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={errors.email ? 'email-error' : undefined}
                   />
+
+                  {errors.email && (
+                    <p id="email-error" className="mt-1 text-sm text-red-600 dark:text-red-400">
+                      {errors.email}
+                    </p>
+                  )}
                 </div>
 
                 {/* Password */}
@@ -205,11 +268,17 @@ function Register() {
                     name="password"
                     type="password"
                     autoComplete="new-password"
-                    required
-                    minLength={6}
                     placeholder="Create a password"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    className={inputClass('password')}
+                    aria-invalid={Boolean(errors.password)}
+                    aria-describedby={errors.password ? 'password-error' : undefined}
                   />
+
+                  {errors.password && (
+                    <p id="password-error" className="mt-1 text-sm text-red-600 dark:text-red-400">
+                      {errors.password}
+                    </p>
+                  )}
                 </div>
 
                 {/* Confirm Password */}
@@ -226,43 +295,60 @@ function Register() {
                     name="confirmPassword"
                     type="password"
                     autoComplete="new-password"
-                    required
-                    minLength={6}
                     placeholder="Confirm your password"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    className={inputClass('confirmPassword')}
+                    aria-invalid={Boolean(errors.confirmPassword)}
+                    aria-describedby={errors.confirmPassword ? 'confirmPassword-error' : undefined}
                   />
+
+                  {errors.confirmPassword && (
+                    <p id="confirmPassword-error" className="mt-1 text-sm text-red-600 dark:text-red-400">
+                      {errors.confirmPassword}
+                    </p>
+                  )}
                 </div>
 
                 {/* Terms */}
-                <div className="flex items-start gap-2 pt-1">
+                <div className="pt-1">
 
-                  <input
-                    id="terms"
-                    name="terms"
-                    type="checkbox"
-                    required
-                    className="w-4 h-4 mt-1 accent-blue-600 shrink-0"
-                  />
+                  <div className="flex items-start gap-2">
 
-                  <label
-                    htmlFor="terms"
-                    className="text-sm text-slate-600 dark:text-slate-400"
-                  >
-                    I agree to the{' '}
-                    <Link
-                      to="/terms"
-                      className="text-blue-600 dark:text-blue-400 hover:underline"
+                    <input
+                      id="terms"
+                      name="terms"
+                      type="checkbox"
+                      className="w-4 h-4 mt-1 accent-blue-600 shrink-0"
+                      aria-invalid={Boolean(errors.terms)}
+                      aria-describedby={errors.terms ? 'terms-error' : undefined}
+                    />
+
+                    <label
+                      htmlFor="terms"
+                      className="text-sm text-slate-600 dark:text-slate-400"
                     >
-                      Terms of Service
-                    </Link>
-                    {' '}and{' '}
-                    <Link
-                      to="/privacy"
-                      className="text-blue-600 dark:text-blue-400 hover:underline"
-                    >
-                      Privacy Policy
-                    </Link>
-                  </label>
+                      I agree to the{' '}
+                      <Link
+                        to="/terms"
+                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                      >
+                        Terms of Service
+                      </Link>
+                      {' '}and{' '}
+                      <Link
+                        to="/privacy"
+                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                      >
+                        Privacy Policy
+                      </Link>
+                    </label>
+
+                  </div>
+
+                  {errors.terms && (
+                    <p id="terms-error" className="mt-1 text-sm text-red-600 dark:text-red-400">
+                      {errors.terms}
+                    </p>
+                  )}
 
                 </div>
 
