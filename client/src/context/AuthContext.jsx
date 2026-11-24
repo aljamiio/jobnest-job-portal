@@ -10,12 +10,16 @@ export function AuthProvider({ children }) {
         setUser(userData)
     }
 
+    const register = (userData) => {
+        setUser(userData)
+    }
+
     const logout = () => {
         setUser(null)
     }
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login, register, logout }}>
             {children}
         </AuthContext.Provider>
     )

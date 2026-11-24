@@ -1,13 +1,31 @@
 
 import { Link, useNavigate } from 'react-router-dom'
 import { useTheme } from '../../context/ThemeContext'
+import { useAuth } from '../../context/AuthContext'
 
 function Register() {
   const { theme, toggleTheme } = useTheme()
+  const { register } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    const formData = new FormData(e.currentTarget)
+
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const password = formData.get('password')
+    const confirmPassword = formData.get('confirmPassword')
+
+    if (password !== confirmPassword) {
+      alert('Passwords do not match!')
+      return
+    }
+
+    register({ name, email })
+
+    navigate('/')
   }
 
   return (
@@ -16,7 +34,6 @@ function Register() {
       {/* Header */}
       <header className="w-full max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between shrink-0">
 
-        {/* Brand Logo */}
         <Link to="/" className="flex items-center shrink-0">
           <img
             src={
@@ -29,7 +46,6 @@ function Register() {
           />
         </Link>
 
-        {/* Theme Toggle */}
         <button
           onClick={toggleTheme}
           type="button"
@@ -50,7 +66,6 @@ function Register() {
           {/* Left Branding Panel */}
           <section className="relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-950 text-white p-8 sm:p-12 lg:p-14 flex flex-col justify-between">
 
-            {/* Decorative Shapes */}
             <div className="absolute -top-32 -right-24 w-96 h-96 rounded-full border-[50px] border-white/5" />
 
             <div className="absolute bottom-20 -left-32 w-80 h-80 rounded-full bg-blue-400/10 blur-3xl" />
@@ -138,7 +153,6 @@ function Register() {
 
                 {/* Full Name */}
                 <div>
-
                   <label
                     htmlFor="name"
                     className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2"
@@ -155,12 +169,10 @@ function Register() {
                     placeholder="Enter your full name"
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                   />
-
                 </div>
 
                 {/* Email */}
                 <div>
-
                   <label
                     htmlFor="email"
                     className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2"
@@ -177,12 +189,10 @@ function Register() {
                     placeholder="name@example.com"
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                   />
-
                 </div>
 
                 {/* Password */}
                 <div>
-
                   <label
                     htmlFor="password"
                     className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2"
@@ -200,12 +210,10 @@ function Register() {
                     placeholder="Create a password"
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                   />
-
                 </div>
 
                 {/* Confirm Password */}
                 <div>
-
                   <label
                     htmlFor="confirmPassword"
                     className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2"
@@ -223,7 +231,6 @@ function Register() {
                     placeholder="Confirm your password"
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                   />
-
                 </div>
 
                 {/* Terms */}
