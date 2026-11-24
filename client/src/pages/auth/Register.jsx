@@ -12,6 +12,24 @@ function Register() {
   const [errors, setErrors] = useState({})
   const [formError, setFormError] = useState('')
 
+  // Clear field errors when the user changes input
+  const handleChange = (field) => {
+    setErrors((prevErrors) => {
+      const updatedErrors = { ...prevErrors }
+
+      delete updatedErrors[field]
+
+      // Password change may affect confirm password validation
+      if (field === 'password') {
+        delete updatedErrors.confirmPassword
+      }
+
+      return updatedErrors
+    })
+
+    setFormError('')
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -221,6 +239,7 @@ function Register() {
                     autoComplete="name"
                     placeholder="Enter your full name"
                     className={inputClass('name')}
+                    onChange={() => handleChange('name')}
                     aria-invalid={Boolean(errors.name)}
                     aria-describedby={errors.name ? 'name-error' : undefined}
                   />
@@ -248,6 +267,7 @@ function Register() {
                     autoComplete="email"
                     placeholder="name@example.com"
                     className={inputClass('email')}
+                    onChange={() => handleChange('email')}
                     aria-invalid={Boolean(errors.email)}
                     aria-describedby={errors.email ? 'email-error' : undefined}
                   />
@@ -275,6 +295,7 @@ function Register() {
                     autoComplete="new-password"
                     placeholder="Create a password"
                     className={inputClass('password')}
+                    onChange={() => handleChange('password')}
                     aria-invalid={Boolean(errors.password)}
                     aria-describedby={errors.password ? 'password-error' : undefined}
                   />
@@ -302,6 +323,7 @@ function Register() {
                     autoComplete="new-password"
                     placeholder="Confirm your password"
                     className={inputClass('confirmPassword')}
+                    onChange={() => handleChange('confirmPassword')}
                     aria-invalid={Boolean(errors.confirmPassword)}
                     aria-describedby={errors.confirmPassword ? 'confirmPassword-error' : undefined}
                   />
@@ -323,6 +345,7 @@ function Register() {
                       name="terms"
                       type="checkbox"
                       className="w-4 h-4 mt-1 accent-blue-600 shrink-0"
+                      onChange={() => handleChange('terms')}
                       aria-invalid={Boolean(errors.terms)}
                       aria-describedby={errors.terms ? 'terms-error' : undefined}
                     />
