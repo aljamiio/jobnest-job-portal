@@ -81,6 +81,28 @@ function Jobs() {
     setJobType('')
   }
 
+  const filteredJobs = jobs.filter((job) => {
+    const searchMatch =
+      job.title.toLowerCase().includes(search.toLowerCase()) ||
+      job.company.toLowerCase().includes(search.toLowerCase())
+
+    const locationMatch =
+      job.location.toLowerCase().includes(location.toLowerCase())
+
+    const categoryMatch =
+      category === '' || job.category === category
+
+    const jobTypeMatch =
+      jobType === '' || job.type === jobType
+
+    return (
+      searchMatch &&
+      locationMatch &&
+      categoryMatch &&
+      jobTypeMatch
+    )
+  })
+
   return (
     <div className="min-h-screen p-6 md:p-10 bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300">
 
@@ -203,13 +225,13 @@ function Jobs() {
             </h2>
 
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              {jobs.length} Jobs Available
+              {filteredJobs.length} Jobs Available
             </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            {jobs.map((job) => (
+            {filteredJobs.map((job) => (
               <div
                 key={job.id}
                 className="p-6 rounded-2xl border border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:shadow-lg transition duration-300"
