@@ -31,8 +31,13 @@ function Register() {
       newErrors.name = 'Name must contain at least 2 characters.'
     }
 
+    // Email Validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
     if (!email) {
       newErrors.email = 'Email address is required.'
+    } else if (!emailRegex.test(email)) {
+      newErrors.email = 'Please enter a valid email address.'
     }
 
     if (!password) {
