@@ -180,12 +180,12 @@ function Login() {
                       Password
                     </label>
 
-                    <button
-                      type="button"
-                      className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                    <Link
+                      to="/forgot-password"
+                      className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline transition-colors"
                     >
                       Forgot password?
-                    </button>
+                    </Link>
 
                   </div>
 
