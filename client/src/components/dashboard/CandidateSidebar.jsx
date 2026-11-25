@@ -1,18 +1,44 @@
 
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
+import { useTheme } from '../../context/ThemeContext'
 
 function CandidateSidebar() {
     const { logout } = useAuth()
+    const { theme } = useTheme()
     const navigate = useNavigate()
 
     const menuItems = [
-        { name: 'Dashboard', path: '/candidate/dashboard', icon: '📊' },
-        { name: 'My Profile', path: '/candidate/profile', icon: '👤' },
-        { name: 'Applied Jobs', path: '/candidate/applied-jobs', icon: '💼' },
-        { name: 'Saved Jobs', path: '/candidate/saved-jobs', icon: '🔖' },
-        { name: 'Applications', path: '/candidate/applications', icon: '📄' },
-        { name: 'Notifications', path: '/candidate/notifications', icon: '🔔' },
+        {
+            name: 'Dashboard',
+            path: '/candidate/dashboard',
+            icon: '📊',
+        },
+        {
+            name: 'My Profile',
+            path: '/candidate/profile',
+            icon: '👤',
+        },
+        {
+            name: 'Applied Jobs',
+            path: '/candidate/applied-jobs',
+            icon: '💼',
+        },
+        {
+            name: 'Saved Jobs',
+            path: '/candidate/saved-jobs',
+            icon: '🔖',
+        },
+        {
+            name: 'Applications',
+            path: '/candidate/applications',
+            icon: '📄',
+        },
+        {
+            name: 'Notifications',
+            path: '/candidate/notifications',
+            icon: '🔔',
+        },
     ]
 
     const handleLogout = () => {
@@ -21,37 +47,60 @@ function CandidateSidebar() {
     }
 
     return (
-        <aside className="w-64 min-h-screen bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 p-5">
+        <aside className="w-64 min-h-screen shrink-0 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 p-5 flex flex-col">
 
-            <h2 className="text-xl font-bold text-blue-600 mb-8">
-                JobNest
-            </h2>
+            {/* Brand Logo */}
+            <div className="mb-8">
+                <NavLink to="/candidate/dashboard">
+                    <img
+                        src={
+                            theme === 'light'
+                                ? '/jobnest-logo-light.png'
+                                : '/jobnest-logo-dark.png'
+                        }
+                        alt="JobNest"
+                        className="h-12 w-auto max-w-[200px] object-contain"
+                    />
+                </NavLink>
+            </div>
 
-            <nav className="space-y-2">
+            {/* Navigation Menu */}
+            <nav className="space-y-2 flex-1">
+
                 {menuItems.map((item) => (
                     <NavLink
                         key={item.path}
                         to={item.path}
                         className={({ isActive }) =>
-                            `flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition ${
+                            `flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200 ${
                                 isActive
-                                    ? 'bg-blue-600 text-white'
+                                    ? 'bg-blue-600 text-white shadow-sm'
                                     : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
                             }`
                         }
                     >
-                        <span>{item.icon}</span>
+                        <span className="text-lg">
+                            {item.icon}
+                        </span>
+
                         {item.name}
                     </NavLink>
                 ))}
+
             </nav>
 
-            <button
-                onClick={handleLogout}
-                className="w-full mt-10 text-left px-4 py-3 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-950 transition"
-            >
-                🚪 Logout
-            </button>
+            {/* Logout */}
+            <div className="border-t border-gray-200 dark:border-gray-800 pt-5 mt-6">
+
+                <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-950 transition-colors duration-200"
+                >
+                    <span className="text-lg">🚪</span>
+                    Logout
+                </button>
+
+            </div>
 
         </aside>
     )

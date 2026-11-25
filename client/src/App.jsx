@@ -4,29 +4,47 @@ import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Jobs from './pages/jobs/Jobs'
 import JobDetails from './pages/jobs/JobDetails'
+
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import ForgotPassword from './pages/auth/ForgotPassword'
-import NotFound from './pages/NotFound'
+
+import CandidateDashboard from './pages/dashboard/candidate/CandidateDashboard'
 
 import MainLayout from './layouts/MainLayout'
+import CandidateLayout from './layouts/CandidateLayout'
+
+import NotFound from './pages/NotFound'
 
 function App() {
-  return (
-    <Routes>
-      <Route element={<MainLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/jobs" element={<Jobs />} />
-        <Route path="/jobs/:id" element={<JobDetails />} />
-      </Route>
+    return (
+        <Routes>
 
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
+            {/* Main Website Routes */}
+            <Route element={<MainLayout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/jobs" element={<Jobs />} />
+                <Route path="/jobs/:id" element={<JobDetails />} />
+            </Route>
 
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  )
+            {/* Authentication Routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+
+            {/* Candidate Dashboard Routes */}
+            <Route path="/candidate" element={<CandidateLayout />}>
+                <Route
+                    path="dashboard"
+                    element={<CandidateDashboard />}
+                />
+            </Route>
+
+            {/* Not Found */}
+            <Route path="*" element={<NotFound />} />
+
+        </Routes>
+    )
 }
 
 export default App
