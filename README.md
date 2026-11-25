@@ -686,7 +686,7 @@ The architecture and roadmap describe the complete planned system, including fut
 # 👨‍💻 Author
 
 Md. Jubayer Al Jami
-GitHub: @aljamiio
+GitHub: [@aljamiio](https://github.com/aljamiio)
 
 Software Engineering Student & Developer
 
