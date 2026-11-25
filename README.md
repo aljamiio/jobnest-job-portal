@@ -511,61 +511,123 @@ The backend will expose RESTful APIs.
 
 Development will follow three major phases.
 
-## Phase A — Core Job Portal
+# Phase A — Core Job Portal
 
-- [x] Project Setup
-- [x] Authentication Frontend
-- [x] Login & Registration
-- [x] Form Validation
-- [x] Forgot Password Page
-- [x] Mock Authentication
-- [x] Home Page
-- [x] Job Listing
-- [x] Job Details
-- [x] Job Search & Filtering
-- [ ] Candidate Dashboard
-- [ ] Candidate Profile
-- [ ] Applied Jobs
-- [ ] Saved Jobs
-- [ ] Employer Dashboard
-- [ ] Company Profile
-- [ ] Job Posting Management
-- [ ] Applicant Management
-- [ ] About & Contact Pages
-- [ ] Final Frontend Polish
+Project Setup
 
-## Phase B — Backend & Professional Features
+Authentication Frontend
 
-- [ ] Node.js & Express Setup
-- [ ] MongoDB Integration
-- [ ] Mongoose Models
-- [ ] REST API Development
-- [ ] JWT Authentication
-- [ ] Password Hashing
-- [ ] Role-Based Authorization
-- [ ] Candidate Profile API
-- [ ] Employer & Company APIs
-- [ ] Job Management APIs
-- [ ] Application Management APIs
-- [ ] Resume Upload
-- [ ] Admin Dashboard
-- [ ] Job Approval System
-- [ ] Notification System
-- [ ] API Testing
-- [ ] Frontend & Backend Integration
-- [ ] Deployment
+Login & Registration
 
-## Phase C — Advanced Features (Future Scope)
+Form Validation
 
-- [ ] AI-Based Job Recommendations
-- [ ] AI Resume Analysis
-- [ ] Job Matching System
-- [ ] Real-Time Notifications
-- [ ] Candidate-Employer Chat
-- [ ] Interview Scheduling
-- [ ] Advanced Recruitment Analytics
-- [ ] Advanced Reporting
+Forgot Password Page
 
+Mock Authentication
+
+Home Page
+
+Job Listing
+
+Job Details
+
+Job Search & Filtering
+
+Candidate Dashboard
+
+Candidate Profile
+
+Applied Jobs
+
+Saved Jobs
+
+Employer Dashboard
+
+Company Profile
+
+Job Posting Management
+
+Applicant Management
+
+About & Contact Pages
+
+Final Frontend Polish
+
+# Phase B — Backend & Professional Features
+
+Node.js & Express Setup
+
+MongoDB Integration
+
+Mongoose Models
+
+REST API Development
+
+JWT Authentication
+
+Password Hashing
+
+Role-Based Authorization
+
+Candidate Profile API
+
+Employer & Company APIs
+
+Job Management APIs
+
+Application Management APIs
+
+Resume Upload
+
+Admin Dashboard
+
+Job Approval System
+
+Notification System
+
+API Testing
+
+Frontend & Backend Integration
+
+Deployment
+
+# Phase C — Advanced Features (Future Scope)
+
+AI-Based Job Recommendations
+
+AI Resume Analysis
+
+Job Matching System
+
+Real-Time Notifications
+
+Candidate-Employer Chat
+
+Interview Scheduling
+
+Advanced Recruitment Analytics
+
+Advanced Reporting
+
+# Security Considerations
+
+Secure password storage using bcrypt.js.
+
+JWT-based authentication.
+
+Role-based access control.
+
+Protected frontend and backend routes.
+
+Input validation and sanitization.
+
+Secure file upload handling.
+
+Environment variable management.
+
+Proper API error handling.
+
+Authorization checks for sensitive operations.
 ---
 
 # 🚀 Installation & Setup
@@ -624,6 +686,7 @@ The architecture and roadmap describe the complete planned system, including fut
 # 👨‍💻 Author
 
 Md. Jubayer Al Jami
+GitHub: @aljamiio
 
 Software Engineering Student & Developer
 
@@ -631,4 +694,8 @@ Project: JobNest
 Type: Full-Stack Job & Internship Portal
 Architecture: MERN Stack
 Target Market: Bangladesh (with future international expansion)
+
+# License
+
+This project is developed for educational and portfolio purposes.
 
