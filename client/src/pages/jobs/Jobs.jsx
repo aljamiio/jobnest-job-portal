@@ -1,74 +1,13 @@
 
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import jobs from '../../data/jobs'
 
 function Jobs() {
   const [search, setSearch] = useState('')
   const [location, setLocation] = useState('')
   const [category, setCategory] = useState('')
   const [jobType, setJobType] = useState('')
-
-  const jobs = [
-    {
-      id: 1,
-      title: 'Frontend Developer',
-      company: 'TechNova',
-      location: 'Dhaka, Bangladesh',
-      salary: '৳40,000 - ৳60,000',
-      type: 'Full-time',
-      category: 'Development',
-      posted: '2 days ago',
-    },
-    {
-      id: 2,
-      title: 'UI/UX Designer',
-      company: 'PixelCraft',
-      location: 'Remote',
-      salary: '৳30,000 - ৳45,000',
-      type: 'Full-time',
-      category: 'Design',
-      posted: '3 days ago',
-    },
-    {
-      id: 3,
-      title: 'React Developer Intern',
-      company: 'CodeBridge',
-      location: 'Dhaka, Bangladesh',
-      salary: '৳15,000 - ৳20,000',
-      type: 'Internship',
-      category: 'Development',
-      posted: '1 day ago',
-    },
-    {
-      id: 4,
-      title: 'Digital Marketing Executive',
-      company: 'GrowthHub',
-      location: 'Chattogram, Bangladesh',
-      salary: '৳25,000 - ৳35,000',
-      type: 'Full-time',
-      category: 'Marketing',
-      posted: '5 days ago',
-    },
-    {
-      id: 5,
-      title: 'Customer Support Executive',
-      company: 'SupportPro',
-      location: 'Remote',
-      salary: '৳20,000 - ৳30,000',
-      type: 'Part-time',
-      category: 'Customer Support',
-      posted: '4 days ago',
-    },
-    {
-      id: 6,
-      title: 'Backend Developer',
-      company: 'TechNova',
-      location: 'Dhaka, Bangladesh',
-      salary: '৳50,000 - ৳70,000',
-      type: 'Full-time',
-      category: 'Development',
-      posted: '6 days ago',
-    },
-  ]
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -235,7 +174,7 @@ function Jobs() {
             </span>
           </div>
 
-          {/* Dynamic Job Cards and Empty State */}
+          {/* Job Cards */}
           {filteredJobs.length > 0 ? (
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -268,15 +207,16 @@ function Jobs() {
                     <p>📍 {job.location}</p>
                     <p>💰 {job.salary}</p>
                     <p>📂 {job.category}</p>
-                    <p>🕒 Posted {job.posted}</p>
+                    <p>💼 {job.experience}</p>
                   </div>
 
-                  <button
-                    type="button"
-                    className="mt-6 w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition"
+                  {/* View Details */}
+                  <Link
+                    to={`/jobs/${job.id}`}
+                    className="mt-6 block w-full py-3 text-center rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition"
                   >
                     View Details
-                  </button>
+                  </Link>
 
                 </div>
               ))}
