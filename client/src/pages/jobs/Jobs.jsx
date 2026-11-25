@@ -108,6 +108,7 @@ function Jobs() {
 
       <div className="max-w-7xl mx-auto">
 
+        {/* Page Heading */}
         <div>
           <h1 className="text-3xl md:text-4xl font-bold">
             Browse Jobs
@@ -126,6 +127,7 @@ function Jobs() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
+            {/* Job Search */}
             <div>
               <label className="block mb-2 text-sm font-semibold">
                 Job Title or Company
@@ -140,6 +142,7 @@ function Jobs() {
               />
             </div>
 
+            {/* Location Search */}
             <div>
               <label className="block mb-2 text-sm font-semibold">
                 Location
@@ -154,6 +157,7 @@ function Jobs() {
               />
             </div>
 
+            {/* Job Category */}
             <div>
               <label className="block mb-2 text-sm font-semibold">
                 Job Category
@@ -174,6 +178,7 @@ function Jobs() {
               </select>
             </div>
 
+            {/* Job Type */}
             <div>
               <label className="block mb-2 text-sm font-semibold">
                 Job Type
@@ -195,6 +200,7 @@ function Jobs() {
 
           </div>
 
+          {/* Search Buttons */}
           <div className="mt-5 flex flex-col sm:flex-row gap-3">
 
             <button
@@ -229,55 +235,83 @@ function Jobs() {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Dynamic Job Cards and Empty State */}
+          {filteredJobs.length > 0 ? (
 
-            {filteredJobs.map((job) => (
-              <div
-                key={job.id}
-                className="p-6 rounded-2xl border border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:shadow-lg transition duration-300"
-              >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                <div className="flex justify-between items-start gap-4">
+              {filteredJobs.map((job) => (
+                <div
+                  key={job.id}
+                  className="p-6 rounded-2xl border border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:shadow-lg transition duration-300"
+                >
 
-                  <div>
-                    <h3 className="text-xl font-bold">
-                      {job.title}
-                    </h3>
+                  <div className="flex justify-between items-start gap-4">
 
-                    <p className="mt-2 text-blue-600 dark:text-blue-400 font-medium">
-                      {job.company}
-                    </p>
+                    <div>
+                      <h3 className="text-xl font-bold">
+                        {job.title}
+                      </h3>
+
+                      <p className="mt-2 text-blue-600 dark:text-blue-400 font-medium">
+                        {job.company}
+                      </p>
+                    </div>
+
+                    <span className="text-xs px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">
+                      {job.type}
+                    </span>
+
                   </div>
 
-                  <span className="text-xs px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">
-                    {job.type}
-                  </span>
+                  <div className="mt-5 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                    <p>📍 {job.location}</p>
+                    <p>💰 {job.salary}</p>
+                    <p>📂 {job.category}</p>
+                    <p>🕒 Posted {job.posted}</p>
+                  </div>
+
+                  <button
+                    type="button"
+                    className="mt-6 w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition"
+                  >
+                    View Details
+                  </button>
 
                 </div>
+              ))}
 
-                <div className="mt-5 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+            </div>
 
-                  <p>📍 {job.location}</p>
+          ) : (
 
-                  <p>💰 {job.salary}</p>
+            /* Empty State */
+            <div className="py-16 px-6 text-center rounded-2xl border border-gray-200 dark:border-slate-800 bg-gray-50 dark:bg-slate-900">
 
-                  <p>📂 {job.category}</p>
-
-                  <p>🕒 Posted {job.posted}</p>
-
-                </div>
-
-                <button
-                  type="button"
-                  className="mt-6 w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition"
-                >
-                  View Details
-                </button>
-
+              <div className="text-5xl mb-5">
+                🔍
               </div>
-            ))}
 
-          </div>
+              <h3 className="text-2xl font-bold">
+                No Jobs Found
+              </h3>
+
+              <p className="mt-3 text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+                We couldn't find any jobs matching your search.
+                Try adjusting your filters or search with different keywords.
+              </p>
+
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="mt-6 px-7 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition"
+              >
+                Clear All Filters
+              </button>
+
+            </div>
+
+          )}
 
         </div>
 
