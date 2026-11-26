@@ -11,6 +11,7 @@ import ForgotPassword from './pages/auth/ForgotPassword'
 
 import CandidateDashboard from './pages/dashboard/candidate/CandidateDashboard'
 import MyProfile from './pages/dashboard/candidate/MyProfile'
+import MyApplications from './pages/dashboard/MyApplications'
 
 import MainLayout from './layouts/MainLayout'
 import CandidateLayout from './layouts/CandidateLayout'
@@ -44,6 +45,11 @@ function App() {
                 <Route
                     path="profile"
                     element={<MyProfile />}
+                />
+
+                <Route
+                    path="applications"
+                    element={<MyApplications />}
                 />
 
             </Route>
