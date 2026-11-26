@@ -1,10 +1,12 @@
 
 import { Outlet } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { useTheme } from '../context/ThemeContext'
 import CandidateSidebar from '../components/dashboard/CandidateSidebar'
 
 function CandidateLayout() {
     const { user } = useAuth()
+    const { theme, toggleTheme } = useTheme()
 
     return (
         <div className="min-h-screen flex bg-gray-50 dark:bg-gray-950">
@@ -17,15 +19,37 @@ function CandidateLayout() {
 
                 {/* Dashboard Header */}
                 <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-6 py-4">
-                    <div className="flex items-center justify-between">
+
+                    <div className="flex items-center justify-between gap-4">
+
                         <h1 className="text-xl font-bold text-gray-900 dark:text-white">
                             Candidate Dashboard
                         </h1>
 
-                        <p className="text-sm text-gray-600 dark:text-gray-300">
-                            Welcome, {user?.name || 'Candidate'}
-                        </p>
+                        <div className="flex items-center gap-4">
+
+                            {/* Welcome Message */}
+                            <p className="text-sm text-gray-600 dark:text-gray-300 hidden sm:block">
+                                Welcome, {user?.name || 'Candidate'}
+                            </p>
+
+                            {/* Theme Toggle */}
+                            <button
+                                onClick={toggleTheme}
+                                type="button"
+                                aria-label="Toggle dark and light mode"
+                                title="Toggle Theme"
+                                className="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                            >
+                                <span className="text-xl">
+                                    {theme === 'dark' ? '☀️' : '🌙'}
+                                </span>
+                            </button>
+
+                        </div>
+
                     </div>
+
                 </header>
 
                 {/* Dashboard Pages */}

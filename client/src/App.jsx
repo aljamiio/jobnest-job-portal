@@ -11,7 +11,10 @@ import ForgotPassword from './pages/auth/ForgotPassword'
 
 import CandidateDashboard from './pages/dashboard/candidate/CandidateDashboard'
 import MyProfile from './pages/dashboard/candidate/MyProfile'
-import MyApplications from './pages/dashboard/candidate/MyApplication'
+import MyApplications from './pages/dashboard/candidate/MyApplications'
+import AppliedJobs from './pages/dashboard/candidate/AppliedJobs'
+import SavedJobs from './pages/dashboard/candidate/SavedJobs'
+import Notifications from './pages/dashboard/candidate/Notifications'
 
 import MainLayout from './layouts/MainLayout'
 import CandidateLayout from './layouts/CandidateLayout'
@@ -50,6 +53,21 @@ function App() {
                 <Route
                     path="applications"
                     element={<MyApplications />}
+                />
+
+                <Route
+                    path="applied-jobs"
+                    element={<AppliedJobs />}
+                />
+
+                <Route
+                    path="saved-jobs"
+                    element={<SavedJobs />}
+                />
+
+                <Route
+                    path="notifications"
+                    element={<Notifications />}
                 />
 
             </Route>
