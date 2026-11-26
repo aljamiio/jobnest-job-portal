@@ -10,6 +10,7 @@ import Register from './pages/auth/Register'
 import ForgotPassword from './pages/auth/ForgotPassword'
 
 import CandidateDashboard from './pages/dashboard/candidate/CandidateDashboard'
+import MyProfile from './pages/dashboard/candidate/MyProfile'
 
 import MainLayout from './layouts/MainLayout'
 import CandidateLayout from './layouts/CandidateLayout'
@@ -34,10 +35,17 @@ function App() {
 
             {/* Candidate Dashboard Routes */}
             <Route path="/candidate" element={<CandidateLayout />}>
+
                 <Route
                     path="dashboard"
                     element={<CandidateDashboard />}
                 />
+
+                <Route
+                    path="profile"
+                    element={<MyProfile />}
+                />
+
             </Route>
 
             {/* Not Found */}
