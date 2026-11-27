@@ -34,6 +34,12 @@ function EmployerSidebar() {
             path: '/employer/applicants',
             icon: '👥',
         },
+
+        {
+            name: 'Settings',
+            path: '/employer/settings',
+            icon: '⚙️',
+        },
     ]
 
     const handleLogout = () => {
