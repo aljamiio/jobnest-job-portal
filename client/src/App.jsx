@@ -21,6 +21,7 @@ import Notifications from './pages/dashboard/candidate/Notifications'
 
 // Employer Dashboard Pages
 import EmployerDashboard from './pages/dashboard/employer/EmployerDashboard'
+import CompanyProfile from './pages/dashboard/employer/CompanyProfile'
 
 // Layouts
 import MainLayout from './layouts/MainLayout'
@@ -99,6 +100,11 @@ function App() {
                 <Route
                     path="dashboard"
                     element={<EmployerDashboard />}
+                />
+
+                <Route
+                    path="company-profile"
+                    element={<CompanyProfile />}
                 />
 
             </Route>

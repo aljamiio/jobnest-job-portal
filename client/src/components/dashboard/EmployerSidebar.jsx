@@ -16,7 +16,7 @@ function EmployerSidebar() {
         },
         {
             name: 'Company Profile',
-            path: '/employer/company',
+            path: '/employer/company-profile',
             icon: '🏢',
         },
         {
