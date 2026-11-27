@@ -19,6 +19,8 @@ import Notifications from './pages/dashboard/candidate/Notifications'
 import MainLayout from './layouts/MainLayout'
 import CandidateLayout from './layouts/CandidateLayout'
 
+import EmployerLayout from './layouts/EmployerLayout'
+
 import NotFound from './pages/NotFound'
 
 function App() {
@@ -74,6 +76,11 @@ function App() {
 
             {/* Not Found */}
             <Route path="*" element={<NotFound />} />
+
+
+            <Route path="/employer" element={<EmployerLayout />}>
+                <Route index element={<h1>Employer Dashboard</h1>} />
+            </Route>
 
         </Routes>
     )
